@@ -19,7 +19,6 @@ function ensure_admin_access(): bool
 
     return false;
 }
-
 function get_database_connection(): ?PDO
 {
     static $pdo = null;
@@ -28,7 +27,14 @@ function get_database_connection(): ?PDO
         return $pdo;
     }
 
-    // Tạo đối tượng PDO để kết nối đến database
+    $pdo = new PDO(
+        'pgsql:host=127.0.0.1;port=5432;dbname=ct275_lab2',
+        'postgres',
+        '123'
+    );
+
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
     return $pdo;
 }

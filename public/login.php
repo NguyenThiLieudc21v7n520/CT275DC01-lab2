@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($email !== '' && $password !== '') {
         if ($email === 'me@example.com' && $password === 'testpass') {
-            $_SESSION['user'] = 'me';
+            $_SESSION['user'] = 'admin'; // Đã sửa: Đổi từ 'me' thành 'admin' để vượt qua kiểm tra admin
             $loggedin = true;
         } else {
             $error_message = 'Địa chỉ email và mật khẩu không khớp!';
@@ -36,7 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php endif; ?>
 
 <?php if ($loggedin): ?>
-    <p>Bạn đã đăng nhập!</p>
+    <p style="color: green; font-weight: bold;">Bạn đã đăng nhập thành công!</p>
+    <p><a href="view_quotes.php">Đến trang Xem tất cả Trích dẫn</a></p>
 <?php else: ?>
     <h2>Form Đăng nhập</h2>
     <form action="login.php" method="post">
